@@ -1,0 +1,331 @@
+/*
+Used naming convention: https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md 
+Not married to any convention, I just use it cause it's documented well and like it slightly more over BEM.
+*/
+:root {
+  --font-size-base: 16px;
+
+  --color-main: #f26649;
+  --color-secondary: #ffc83e;
+  --color-complement: #8d9;
+  --color-dark: #1b3a41;
+  --color-light: #fafafa;
+
+  /* Default to light theme */
+  --color-text: var(--color-dark);
+  --color-bg: #f3f3f3;
+  --color-content: #fff;
+
+  --space-xs: 0.25em;
+  --space-sm: calc(2 * var(--space-xs));
+  --space-md: calc(4 * var(--space-xs));
+  --space-lg: calc(6 * var(--space-xs));
+  --space-xl: calc(8 * var(--space-xs));
+  --space-xs-root: 0.25rem;
+  --space-sm-root: calc(2 * var(--space-xs));
+  --space-md-root: calc(4 * var(--space-xs));
+  --space-lg-root: calc(6 * var(--space-xs));
+  --space-xl-root: calc(8 * var(--space-xs));
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+html {
+  font-size: var(--font-size-base);
+  font-family: 'Segoe UI', 'Open Sans', Tahoma, 'Arial Narrow', sans-serif;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-weight: 100;
+}
+h2 {
+  font-size: 1.75em;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: var(--color-main);
+}
+
+body,
+#Theme--dark {
+  display: flex;
+  flex-direction: column;
+}
+
+#Theme--dark,
+#Theme--light {
+  flex: 1 0 auto;
+  background-color: var(--color-bg);
+}
+
+#Theme--dark:target {
+  --color-text: #a9bbbe;
+  --color-bg: #183238;
+  --color-content: var(--color-dark);
+}
+
+.Theme-switch {
+  display: none;
+}
+@supports (--css: variables) {
+  .Theme-switch {
+    display: block;
+  }
+}
+
+a.Theme-switch--dark {
+  color: var(--color-dark);
+}
+a.Theme-switch--light {
+  color: var(--color-light);
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  justify-content: flex-end;
+  padding: var(--space-sm) var(--space-lg) var(--space-md);
+  margin-bottom: var(--space-xl);
+  box-shadow: /* inset */ 0 0 3px 0 rgba(0, 0, 0, 0.05);
+  background-color: var(--color-complement);
+  text-align: right;
+}
+#Theme--dark:target .Header {
+  background-color: var(--color-main);
+}
+
+.Header-title {
+  position: absolute;
+  left: var(--space-lg);
+  top: 0;
+  padding: var(--space-lg) var(--space-sm) var(--space-xs);
+  margin: 0;
+}
+
+.Header-title::after {
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  display: block;
+  content: '';
+  border: var(--space-xs) solid transparent;
+  border-color: var(--color-dark) transparent transparent var(--color-dark);
+}
+#Theme--dark:target .Header-title::after {
+  border-color: var(--color-light) transparent transparent var(--color-light);
+}
+
+.Page {
+  position: relative;
+  width: 90%;
+  max-width: 60em;
+  margin: auto;
+}
+.Page-title {
+  font-weight: 400;
+}
+.Page-subTitle {
+  margin-bottom: var(--space-lg);
+}
+#Theme--dark:target .Page-title {
+  color: var(--color-text);
+}
+.Page-subTitle {
+  color: #60828a;
+  text-transform: uppercase;
+  font-size: 1em;
+}
+
+.Page-avatar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 50%;
+  border: 5px solid var(--color-content);
+  box-shadow: 0 -1px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.Page-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(-2 * var(--space-md));
+  color: var(--color-text);
+}
+
+.Section {
+  flex: 1 1 100%;
+  margin: 0 var(--space-md) var(--space-lg);
+  padding: var(--space-md);
+  background-color: var(--color-content);
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.05);
+}
+.Section--small {
+  flex-basis: 50%;
+  flex-basis: calc(50% - 2 * var(--space-md));
+}
+
+.Section--interests ul {
+  clear: both;
+}
+
+.Section--interests img {
+  vertical-align: middle;
+  margin-right: var(--space-md);
+}
+
+.Section-title {
+  position: relative;
+  display: inline-block;
+  padding: var(--space-xs) var(--space-md);
+  margin-left: calc(-1 * (var(--space-xs-root) + var(--space-md-root)));
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+.Section-title::after {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  display: block;
+  content: '';
+  border: var(--space-xs) solid transparent;
+  border-color: var(--color-dark) var(--color-dark) transparent transparent;
+}
+#Theme--dark:target .Section-title::after {
+  border-color: var(--color-light) var(--color-light) transparent transparent;
+}
+
+.ImageList {
+  overflow: hidden;
+}
+.ImageList-item {
+  float: left;
+  width: 50%;
+  min-height: 36px;
+  padding-right: var(--space-lg);
+  list-style-type: none;
+  background: no-repeat left top / 26px none;
+}
+
+.ImageList-item img,
+.ImageList-item svg {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.ImageList-item svg {
+  fill: var(--color-main);
+}
+
+.InfoList {
+  display: flex;
+  flex-wrap: wrap;
+}
+.InfoList-details {
+  flex: 2 0 80%;
+  padding-left: var(--space-md);
+  margin: 0;
+}
+.InfoList-term {
+  flex: 1 0 20%;
+  min-width: 100px;
+  margin: 0;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.InfoList-details {
+  flex-grow: 0;
+}
+.InfoList-details + .InfoList-term,
+.InfoList-details + .InfoList-term + .InfoList-details {
+  margin-top: var(--space-sm);
+}
+
+.Section--personal .InfoList-term {
+  text-align: right;
+}
+
+.Button {
+  display: inline-block;
+  border: 3px solid;
+  border-radius: 3px;
+  line-height: 2;
+  text-decoration: none;
+  padding: 0 var(--space-sm);
+}
+
+.Button {
+  text-transform: uppercase;
+  z-index: 1;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+.Button:hover {
+  text-decoration: none;
+}
+.Button::before {
+  content: '';
+  position: absolute;
+  border: solid 2px;
+  border-radius: inherit;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+.Button:hover:before,
+.Button:focus:before,
+.Button:active:before {
+  -webkit-animation-name: RippleOut;
+  animation-name: RippleOut;
+}
+
+@keyframes RippleOut {
+  100% {
+    top: -12px;
+    right: -12px;
+    bottom: -12px;
+    left: -12px;
+    opacity: 0;
+  }
+}
+
+.u-title {
+  background: var(--color-dark);
+  color: var(--color-light);
+  font-size: 1.5em;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
+}
+#Theme--dark:target .u-title {
+  background: var(--color-light);
+  color: var(--color-dark);
+}
+
+.u-cleanList {
+  padding: 0;
+  list-style-type: none;
+}

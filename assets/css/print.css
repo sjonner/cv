@@ -1,0 +1,68 @@
+.u-screenOnly {
+  display: none;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+html {
+  font-family: 'Segoe UI', 'Open Sans', Tahoma, 'Arial Narrow', sans-serif;
+}
+
+.Header-title,
+.Page-title {
+  margin: 10px 0;
+}
+.Page-subTitle {
+  margin: 0 0 10px;
+}
+.Page-avatar {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 50%;
+}
+
+.Section {
+  margin: 0 20px;
+}
+.Section-title {
+  margin: 0 -20px;
+}
+
+.InfoList {
+  overflow: hidden;
+}
+.InfoList-term {
+  font-weight: bold;
+  float: left;
+  clear: left;
+  width: 100px;
+}
+.InfoList-details {
+  float: left;
+}
+
+.ImageList {
+  overflow: hidden;
+}
+.ImageList-item {
+  float: left;
+  width: 50%;
+  min-height: 36px;
+}
+
+.ImageList-item img,
+.ImageList-item svg {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.u-cleanList {
+  padding: 0;
+  list-style-type: none;
+}
