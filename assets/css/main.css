@@ -22,10 +22,10 @@ Not married to any convention, I just use it cause it's documented well and like
   --space-lg: calc(6 * var(--space-xs));
   --space-xl: calc(8 * var(--space-xs));
   --space-xs-root: 0.25rem;
-  --space-sm-root: calc(2 * var(--space-xs));
-  --space-md-root: calc(4 * var(--space-xs));
-  --space-lg-root: calc(6 * var(--space-xs));
-  --space-xl-root: calc(8 * var(--space-xs));
+  --space-sm-root: calc(2 * var(--space-xs-root));
+  --space-md-root: calc(4 * var(--space-xs-root));
+  --space-lg-root: calc(6 * var(--space-xs-root));
+  --space-xl-root: calc(8 * var(--space-xs-root));
 }
 
 *,
@@ -134,9 +134,12 @@ a.Theme-switch--light {
 
 .Page {
   position: relative;
-  width: 90%;
   max-width: 60em;
   margin: auto;
+}
+.Page-title,
+.Page-subTitle {
+  margin-left: var(--space-md-root);
 }
 .Page-title {
   font-weight: 400;
@@ -155,7 +158,7 @@ a.Theme-switch--light {
 
 .Page-avatar {
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 0;
   border-radius: 50%;
   border: 5px solid var(--color-content);
@@ -165,13 +168,12 @@ a.Theme-switch--light {
 .Page-content {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 calc(-2 * var(--space-md));
   color: var(--color-text);
 }
 
 .Section {
   flex: 1 1 100%;
-  margin: 0 var(--space-md) var(--space-lg);
+  margin: 0 var(--space-md-root) var(--space-lg);
   padding: var(--space-md);
   background-color: var(--color-content);
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.05);
@@ -194,7 +196,7 @@ a.Theme-switch--light {
   position: relative;
   display: inline-block;
   padding: var(--space-xs) var(--space-md);
-  margin-left: calc(-1 * (var(--space-xs-root) + var(--space-md-root)));
+  margin-left: calc(-1 * (var(--space-sm) + var(--space-md-root)));
   font-variant: small-caps;
   text-transform: lowercase;
 }
@@ -236,28 +238,22 @@ a.Theme-switch--light {
   display: flex;
   flex-wrap: wrap;
 }
-.InfoList-details {
-  flex: 2 0 80%;
-  padding-left: var(--space-md);
-  margin: 0;
-}
 .InfoList-term {
-  flex: 1 0 20%;
-  min-width: 100px;
+  flex: 0 0 125px;
   margin: 0;
   font-weight: bold;
   white-space: nowrap;
 }
 .InfoList-details {
-  flex-grow: 0;
+  flex: 1 0 100%;
+  padding-left: var(--space-md);
+  margin: 0;
+  max-width: calc(100% - 125px);
 }
+
 .InfoList-details + .InfoList-term,
 .InfoList-details + .InfoList-term + .InfoList-details {
   margin-top: var(--space-sm);
-}
-
-.Section--personal .InfoList-term {
-  text-align: right;
 }
 
 .Button {
@@ -328,4 +324,17 @@ a.Theme-switch--light {
 .u-cleanList {
   padding: 0;
   list-style-type: none;
+}
+
+@media only screen and (max-width: 480px) {
+  .Page-avatar {
+    width: 100px;
+  }
+
+  .InfoList-term {
+    flex-basis: 120px;
+  }
+  .InfoList-details {
+    flex-basis: calc(100% - 120px);
+  }
 }
